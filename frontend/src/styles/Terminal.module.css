@@ -1,0 +1,284 @@
+/* Terminal styling */
+
+.terminalGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, minmax(40vh, auto));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #111;
+    box-sizing: border-box;
+  }
+  
+  .terminal {
+    position: relative;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #000;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    --terminal-color: #00ff00; /* Default terminal color, can be overridden */
+  }
+  
+  .terminal:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+  }
+  
+  .terminalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #111;
+    border-bottom: 2px solid #333;
+  }
+  
+  .agentName {
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: var(--terminal-color);
+    text-shadow: 0 0 5px var(--terminal-color);
+  }
+  
+  .statusIndicator {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--terminal-color);
+    padding: 0.15rem 0.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--terminal-color);
+    border-radius: 3px;
+  }
+  
+  .terminalScreen {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--terminal-color) #111;
+    position: relative;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--terminal-color);
+  }
+  
+  /* Custom scrollbar */
+  .terminalScreen::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .terminalScreen::-webkit-scrollbar-track {
+    background: #111;
+  }
+  
+  .terminalScreen::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+  }
+  
+  .messagesContainer {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  .messageEntry {
+    margin-bottom: 1rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .messageHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+  
+  .timestamp {
+    margin-right: 0.5rem;
+  }
+  
+  .messageType {
+    padding: 0.1rem 0.3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--terminal-color);
+    border-radius: 3px;
+  }
+  
+  .messageContent {
+    padding-left: 0.5rem;
+    border-left: 2px solid rgba(0, 255, 0, 0.3);
+    word-wrap: break-word;
+  }
+  
+  .tweetPreview {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    border-left: 3px solid var(--terminal-color);
+  }
+  
+  .tweetIcon {
+    margin-right: 0.5rem;
+  }
+  
+  .tweetContent {
+    margin-top: 0.3rem;
+    font-style: italic;
+  }
+  
+  .cursor {
+    display: inline-block;
+    animation: blink 1s infinite;
+    color: var(--terminal-color);
+    margin-left: 2px;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  .typedText {
+    position: relative;
+  }
+  
+  .typingCursor {
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    color: var(--terminal-color);
+  }
+  
+  /* Boot sequence styling */
+  .bootSequence {
+    animation: bootFadeIn 2s ease-in-out;
+  }
+  
+  @keyframes bootFadeIn {
+    0% { opacity: 0; }
+    30% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  
+  /* System message styling */
+  .systemMessage {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    border-radius: 3px;
+  }
+  
+  .systemInfo {
+    color: var(--terminal-color);
+    background-color: rgba(0, 255, 0, 0.05);
+  }
+  
+  .systemWarning {
+    color: #ffcc00;
+    background-color: rgba(255, 204, 0, 0.05);
+  }
+  
+  .systemError {
+    color: #ff3333;
+    background-color: rgba(255, 51, 51, 0.05);
+  }
+  
+  .systemCritical {
+    color: #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+    font-weight: bold;
+    animation: criticalBlink 0.5s infinite alternate;
+  }
+  
+  @keyframes criticalBlink {
+    0% { background-color: rgba(255, 0, 0, 0.05); }
+    100% { background-color: rgba(255, 0, 0, 0.2); }
+  }
+  
+  .systemSuccess {
+    color: #33ff33;
+    background-color: rgba(51, 255, 51, 0.05);
+  }
+  
+  .messagePrefix {
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+  
+  .blinkOff {
+    opacity: 0;
+  }
+  
+  /* Scrolling log */
+  .scrollingLog {
+    position: relative;
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  
+  .logContent {
+    min-height: 100%;
+  }
+  
+  .logNoise {
+    opacity: 0.5;
+    margin-top: 1rem;
+  }
+  
+  .noiseMessage {
+    font-size: 0.8rem;
+    color: var(--terminal-color);
+    opacity: 0.5;
+    margin: 0.3rem 0;
+    animation: fadeInOut 5s infinite;
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  
+  /* Glitching terminal */
+  .glitching .terminalScreen {
+    animation: screenGlitch 0.3s ease-in-out;
+  }
+  
+  @keyframes screenGlitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+  }
+  
+  /* Media queries for responsive grid */
+  @media (max-width: 1200px) {
+    .terminalGrid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, minmax(35vh, auto));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .terminalGrid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(8, minmax(30vh, auto));
+      padding: 1rem;
+      gap: 1rem;
+    }
+  }

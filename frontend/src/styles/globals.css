@@ -1,0 +1,234 @@
+/* Global styles for the AI Mainframe application */
+
+/* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #000;
+    color: #00ff00;
+    min-height: 100%;
+    width: 100%;
+  }
+  
+  #__next {
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Custom scrollbar for the retro terminal look */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #111;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 255, 0, 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 255, 0, 0.5);
+  }
+  
+  /* Typography - using Google Fonts loaded in _document.js */
+  
+  /* Container styles */
+  .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #111;
+  }
+  
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  /* Boot screen styles */
+  .bootScreen {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00ff00;
+  }
+  
+  .bootContent {
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .bootTitle {
+    font-family: 'VT323', monospace;
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    animation: pulse 2s infinite;
+  }
+  
+  .bootProgress {
+    height: 20px;
+    width: 100%;
+    background-color: #111;
+    border: 1px solid #00ff00;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  
+  .bootProgressInner {
+    height: 100%;
+    background-color: #00ff00;
+    animation: progress 2.5s ease-in-out;
+    width: 100%;
+  }
+  
+  .bootStatus {
+    font-family: 'IBM Plex Mono', monospace;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  
+  .bootStatus p {
+    margin-bottom: 0.5rem;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Grid container styles */
+  .gridContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #111;
+    border-bottom: 2px solid #333;
+  }
+  
+  .title {
+    font-family: 'VT323', monospace;
+    font-size: 2rem;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .controlButton {
+    background-color: #111;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 0.5rem 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .controlButton:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+  }
+  
+  .controlButton.active {
+    background-color: rgba(0, 255, 0, 0.2);
+  }
+  
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #111;
+    border-top: 2px solid #333;
+  }
+  
+  .statusText {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: #00ff00;
+    opacity: 0.7;
+  }
+  
+  /* Animations */
+  @keyframes pulse {
+    0%, 100% {
+      text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(0, 255, 0, 1);
+    }
+  }
+  
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+    20% {
+      width: 20%;
+    }
+    50% {
+      width: 50%;
+    }
+    70% {
+      width: 70%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Media queries for responsive design */
+  @media (max-width: 768px) {
+    .bootTitle {
+      font-size: 3rem;
+    }
+    
+    .title {
+      font-size: 1.5rem;
+    }
+    
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .controls {
+      width: 100%;
+    }
+  }

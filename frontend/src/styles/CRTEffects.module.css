@@ -1,0 +1,333 @@
+/* CRT Terminal Effects */
+
+.crtContainer {
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  }
+  
+  /* Base CRT screen */
+  .crtScreen {
+    position: relative;
+    background-color: #000;
+    color: var(--terminal-color, #00ff00);
+    font-family: 'IBM Plex Mono', 'VT323', monospace;
+    overflow: hidden;
+    padding: 1rem;
+    text-shadow: 0 0 5px currentColor;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  /* Scanlines overlay */
+  .scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/crt-scanlines.png') repeat;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* CRT overlay with curved edges and reflection */
+  .crtOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/crt-overlay.png') no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  /* Screen flicker animation */
+  .screenFlicker {
+    animation: flicker 0.15s infinite alternate;
+  }
+  
+  @keyframes flicker {
+    0% {
+      opacity: 0.97;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Screen glow effect */
+  .screenGlow {
+    box-shadow: 
+      inset 0 0 10px rgba(var(--glow-color, 0, 255, 0), 0.1),
+      inset 0 0 30px rgba(var(--glow-color, 0, 255, 0), 0.1),
+      0 0 10px rgba(var(--glow-color, 0, 255, 0), 0.1);
+  }
+  
+  /* Power-on animation */
+  .powerOn {
+    animation: powerOnSequence 2s ease-in-out;
+  }
+  
+  @keyframes powerOnSequence {
+    0% {
+      opacity: 0;
+      filter: brightness(2) contrast(0);
+    }
+    5% {
+      opacity: 0.5;
+      filter: brightness(2) contrast(0.3);
+    }
+    10% {
+      opacity: 0.1;
+      filter: brightness(1) contrast(0.5);
+    }
+    20% {
+      opacity: 0.7;
+      filter: brightness(4) contrast(0.7);
+    }
+    30% {
+      opacity: 0.1;
+      filter: brightness(1) contrast(1);
+    }
+    40% {
+      opacity: 0.8;
+      filter: brightness(2.5) contrast(0.8);
+    }
+    70% {
+      opacity: 0.7;
+      filter: brightness(1.5) contrast(1);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1) contrast(1);
+    }
+  }
+  
+  /* Horizontal sync effect */
+  .horizontalSync {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+  
+  .horizontalSyncActive {
+    animation: horizontalSyncMove 10s infinite;
+  }
+  
+  @keyframes horizontalSyncMove {
+    0% {
+      opacity: 0;
+      top: -30px;
+    }
+    10% {
+      opacity: 0;
+    }
+    11% {
+      opacity: 0.5;
+      top: 10%;
+    }
+    15% {
+      opacity: 0;
+      top: 15%;
+    }
+    100% {
+      opacity: 0;
+      top: 120%;
+    }
+  }
+  
+  /* Glitch effects */
+  .glitch {
+    animation: glitchEffect 0.3s ease-in-out;
+  }
+  
+  @keyframes glitchEffect {
+    0% {
+      transform: translate(0);
+      opacity: 1;
+    }
+    20% {
+      transform: translate(-5px, 5px);
+      opacity: 0.9;
+    }
+    40% {
+      transform: translate(-5px, -5px);
+      opacity: 0.8;
+      clip-path: inset(10% 0 70% 0);
+    }
+    60% {
+      transform: translate(5px, 5px);
+      opacity: 0.9;
+      clip-path: inset(30% 0 20% 0);
+    }
+    80% {
+      transform: translate(5px, -5px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Glitch text effects */
+  .glitchMild {
+    animation: glitchMildAnim 0.2s ease-in-out;
+  }
+  
+  .glitchMedium {
+    animation: glitchMediumAnim 0.3s ease-in-out;
+  }
+  
+  .glitchSevere {
+    animation: glitchSevereAnim 0.5s ease-in-out;
+  }
+  
+  .glitchScramble {
+    animation: glitchScrambleAnim 0.3s ease-in-out;
+  }
+  
+  .glitchFlicker {
+    animation: glitchFlickerAnim 0.2s ease-in-out;
+  }
+  
+  .glitchOffset {
+    animation: glitchOffsetAnim 0.3s ease-in-out;
+  }
+  
+  @keyframes glitchMildAnim {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+  
+  @keyframes glitchMediumAnim {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-4px, 0); }
+    20% { transform: translate(4px, -4px); }
+    30% { transform: skew(0.5deg); }
+    40% { transform: translate(-4px, 4px); }
+    50% { transform: skew(-0.5deg); }
+    60% { transform: translate(4px, 0); }
+    70% { transform: skew(0.5deg); }
+    80% { transform: translate(0, -4px); }
+    90% { transform: skew(-0.5deg); }
+  }
+  
+  @keyframes glitchSevereAnim {
+    0%, 100% { 
+      transform: translate(0);
+      filter: none; 
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translate(-8px, 0);
+      filter: hue-rotate(90deg) saturate(150%);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translate(8px, 0);
+      filter: hue-rotate(-90deg) saturate(150%);
+    }
+    5%, 25%, 45%, 65%, 85% {
+      clip-path: inset(10% 0 60% 0);
+    }
+    15%, 35%, 55%, 75%, 95% {
+      clip-path: inset(40% 0 20% 0);
+    }
+  }
+  
+  @keyframes glitchScrambleAnim {
+    0%, 100% { transform: translate(0); }
+    20%, 80% { transform: translate(-2px, 2px); }
+    40%, 60% { transform: translate(2px, -2px); }
+  }
+  
+  @keyframes glitchFlickerAnim {
+    0%, 100% { opacity: 1; }
+    10%, 30%, 50%, 70%, 90% { opacity: 0.2; }
+    20%, 40%, 60%, 80% { opacity: 1; }
+  }
+  
+  @keyframes glitchOffsetAnim {
+    0%, 100% { transform: translate(0); }
+    20%, 80% { transform: translate(-10px, 0); }
+    40%, 60% { transform: translate(10px, 0); }
+  }
+  
+  /* Cursor animations */
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    background-color: currentColor;
+    animation: cursorBlink 1s infinite step-end;
+    vertical-align: text-bottom;
+  }
+  
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  /* Terminal booting animations */
+  .bootSequence {
+    animation: bootSequenceAnim 0.8s ease-in;
+  }
+  
+  @keyframes bootSequenceAnim {
+    0% { 
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* CRT turn off effect */
+  .turnOff {
+    animation: turnOffAnim 0.4s ease-in forwards;
+  }
+  
+  @keyframes turnOffAnim {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    10% {
+      opacity: 1;
+      transform: scale(1.02);
+      filter: brightness(1.5);
+    }
+    40% {
+      opacity: 0.7;
+      transform: scale(0.9);
+      filter: brightness(0.5);
+    }
+    60% {
+      opacity: 0.2;
+      transform: scale(0.5);
+      filter: brightness(0.1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.1);
+      filter: brightness(0);
+    }
+  }
